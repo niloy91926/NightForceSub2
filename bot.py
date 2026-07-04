@@ -50,18 +50,17 @@ except Exception as e:
     exit()
 
 channel = xchannel.replace("@", "")
-bot_self = BotzHub.loop.run_until_complete(BotzHub.get_me())
+channels = [x.replace("@", "") for x in xchannel.split()]
 
 
 # join check
-async def get_user_join(id):
-    ok = True
-    try:
-        await BotzHub(GetParticipantRequest(channel=channel, participant=id))
-        ok = True
-    except UserNotParticipantError:
-        ok = False
-    return ok
+async def get_user_join(user_id):
+    for ch in channels:
+        try:
+            await BotzHub(GetParticipantRequest(channel=ch, participant=user_id))
+        except UserNotParticipantError:
+            return False
+    return True
 
 
 @BotzHub.on(events.ChatAction)
@@ -108,7 +107,11 @@ async def _(event):
                 count=count,
             )
             butt = [
-                Button.url("Channel", url=f"https://t.me/{channel}"),
+                [
+    Button.url("Channel 1", "https://t.me/night_gang_official_bot"),
+    Button.url("Channel 2", "https://t.me/night_support_group"),
+    Button.url("Channel 3", "https://t.me/night_premium_chanel"),
+]
                 Button.inline("UnMute Me", data=f"unmute_{user.id}"),
             ]
             await BotzHub.edit_permissions(
@@ -158,7 +161,11 @@ async def mute_on_msg(event):
             count=count,
         )
         butt = [
-            Button.url("Channel", url=f"https://t.me/{channel}"),
+            [
+    Button.url("Channel 1", "https://t.me/night_gang_official_bot"),
+    Button.url("Channel 2", "https://t.me/night_support_group"),
+    Button.url("Channel 3", "https://t.me/night_premium_chanel"),
+]
             Button.inline("UnMute Me", data=f"unmute_{event.sender_id}"),
         ]
         await event.reply(reply_msg, buttons=butt)
@@ -198,8 +205,16 @@ async def strt(event):
     await event.reply(
         f"Hi. I'm a force subscribe bot made specially for @{channel}!\n\nCheckout @BotzHub :)",
         buttons=[
-            Button.url("Channel", url=f"https://t.me/{channel}"),
-            Button.url("Repository", url="https://github.com/xditya/ForceSub"),
+            [
+    Button.url("Channel 1", "https://t.me/night_gang_official_bot"),
+    Button.url("Channel 2", "https://t.me/night_support_group"),
+    Button.url("Channel 3", "https://t.me/night_premium_chanel"),
+]
+            [
+    Button.url("Channel 1", "https://t.me/night_gang_official_bot"),
+    Button.url("Channel 2", "https://t.me/night_support_group"),
+    Button.url("Channel 3", "https://t.me/night_premium_chanel"),
+]
         ],
     )
 
