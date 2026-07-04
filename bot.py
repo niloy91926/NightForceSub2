@@ -168,17 +168,17 @@ async def mute_on_msg(event):
             count=count,
         )
         butt = [
-            [
-    Button.url("Channel 1", "https://t.me/night_gang_official_bot"),
-    Button.url("Channel 2", "https://t.me/night_support_group"),
-    Button.url("Channel 3", "https://t.me/night_premium_chanel"),
+    [
+        Button.url("Channel 1", "https://t.me/night_gang_official_bot"),
+        Button.url("Channel 2", "https://t.me/night_support_group"),
+        Button.url("Channel 3", "https://t.me/night_premium_chanel"),
+    ],
+    [
+        Button.inline("UnMute Me", data=f"unmute_{event.sender_id}")
+    ]
 ]
-        
-            Button.inline("UnMute Me", data=f"unmute_{event.sender_id}"),
-        
-        ]
-        await event.reply(reply_msg, buttons=butt)
 
+await event.reply(reply_msg, buttons=butt)
 
 @BotzHub.on(events.callbackquery.CallbackQuery(data=re.compile(b"unmute_(.*)")))
 async def _(event):
