@@ -106,23 +106,24 @@ async def _(event):
                 channel=f"@{channel}",
                 count=count,
             )
-            butt = [
-    [
-        Button.url("Channel 1", "https://t.me/night_gang_official_bot"),
-        Button.url("Channel 2", "https://t.me/night_support_group"),
-        Button.url("Channel 3", "https://t.me/night_premium_chanel"),
-    ],
-    [
-        Button.inline("UnMute Me", data=f"unmute_{user.id}")
-    ]
-]
 
-await BotzHub.edit_permissions(
-    event.chat.id,
-    user.id,
-    until_date=None,
-    send_messages=False
-)
+            butt = [
+                [
+                    Button.url("Channel 1", "https://t.me/night_gang_official_bot"),
+                    Button.url("Channel 2", "https://t.me/night_support_group"),
+                    Button.url("Channel 3", "https://t.me/night_premium_chanel"),
+                ],
+                [
+                    Button.inline("UnMute Me", data=f"unmute_{user.id}")
+                ]
+            ]
+
+            await BotzHub.edit_permissions(
+                event.chat.id,
+                user.id,
+                until_date=None,
+                send_messages=False
+            )
 
         await event.reply(msg, buttons=butt)
 
