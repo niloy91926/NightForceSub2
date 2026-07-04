@@ -26,7 +26,7 @@ except Exception as e:
     log.error(e)
     exit()
 
-BotzHub = TelegramClient("BotzHub", 6, "eb06d4abfb49dc3e3a1e0f581e").start(
+BotzHub = TelegramClient("BotzHub", 6, "540f6f3b92df426ea57842c4e60f073a").start(
     bot_token=bottoken
 )
 
