@@ -112,7 +112,8 @@ async def _(event):
     Button.url("Channel 2", "https://t.me/night_support_group"),
     Button.url("Channel 3", "https://t.me/night_premium_chanel"),
 ]
-                Button.inline("UnMute Me", data=f"unmute_{user.id}"),
+            ],
+                [Button.inline("UnMute Me", data=f"unmute_{user.id}")]
             ]
             await BotzHub.edit_permissions(
                 event.chat.id, user.id, until_date=None, send_messages=False
@@ -166,7 +167,9 @@ async def mute_on_msg(event):
     Button.url("Channel 2", "https://t.me/night_support_group"),
     Button.url("Channel 3", "https://t.me/night_premium_chanel"),
 ]
+        
             Button.inline("UnMute Me", data=f"unmute_{event.sender_id}"),
+        
         ]
         await event.reply(reply_msg, buttons=butt)
 
